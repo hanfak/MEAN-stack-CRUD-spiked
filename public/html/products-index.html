@@ -1,1 +1,13 @@
-<h2>Showing product {{pIndexVM.name}}</h2>
+<h2>Showing {{pIndexVM.products.length}} {{pIndexVM.products}}</h2>
+
+<ul>
+  <li data-ng-repeat="product in pIndexVM.products">
+    <a data-ui-sref="productsShow(product)">{{product.name}}</a>
+  </li>
+</ul>
+
+<ul>
+  <li data-ng-repeat="product in pIndexVM.products">
+{{product}}
+  </li>
+</ul>

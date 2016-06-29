@@ -27,6 +27,11 @@
 
   function productsIndexCtrl(){
     var vm  = this;
-    vm.name = 'han';
+    vm.products = [
+      {name: "Product1"},
+      {name: "Product2"},
+      {name: "Product3"},
+      []
+    ];
    }
 })();
