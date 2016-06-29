@@ -2,7 +2,7 @@ var express   = require("express");
 var app       = express();
 
 app.get("/", function(req, res){
-    res.send("I am working"); 
+    res.sendFile(__dirname + "/public/index.html"); 
 });
 
 app.listen(3002, function(){
