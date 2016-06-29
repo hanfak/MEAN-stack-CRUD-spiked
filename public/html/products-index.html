@@ -1,4 +1,4 @@
-<h2>Showing {{pIndexVM.products.length}} {{pIndexVM.products}}</h2>
+<h2>Showing {{pIndexVM.products.length}} products </h2>
 
 <ul>
   <li data-ng-repeat="product in pIndexVM.products">
@@ -6,8 +6,6 @@
   </li>
 </ul>
 
-<ul>
-  <li data-ng-repeat="product in pIndexVM.products">
-{{product}}
-  </li>
-</ul>
+
+
+<a data-ui-sref="productNew">new product</a>

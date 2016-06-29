@@ -9,7 +9,8 @@
   .config(Router)
   .factory("Product", productFactory)
   .controller("productsIndexController", productsIndexCtrl)
-  .controller("productsShowController", productsShowCtrl);
+  .controller("productsShowController", productsShowCtrl)
+  .controller("productsNewController", productsNewCtrl);
 
   Router.$inject = ["$stateProvider", "$locationProvider", "$urlRouterProvider"];
   function Router($stateProvider, $locationProvider, $urlRouterProvider){
@@ -26,6 +27,12 @@
       templateUrl:  "/html/products-show.html",
       controller:   "productsShowController",
       controllerAs: "pShowVM"
+    })
+    .state("productNew", {
+      url:      "/new",
+      templateUrl:  "/html/products-new.html",
+      controller:   "productsNewController",
+      controllerAs: "pNewVM"
     });
     $urlRouterProvider.otherwise("/");
   }
@@ -41,6 +48,14 @@
     var vm  = this;
     vm.products = Product.query();
    }
+
+  productsNewCtrl.$inject = ["Product"];
+  function productsNewCtrl(Product, $location){
+    var vm  = this;
+    vm.create = function(){
+     Product.save(vm.newProduct);
+    };
+  }
 
   productsShowCtrl.$inject = ["$stateParams"];
   function productsShowCtrl($stateParams){
