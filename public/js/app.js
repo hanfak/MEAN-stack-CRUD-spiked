@@ -38,10 +38,9 @@
     ];
    }
 
-  //  productsShowCtrl.$inject = ["$stateParams"];
-    function productsShowCtrl(){
-      var vm        = this;
-      vm.product    = "ball";
-      // vm.product    = $stateParams;
-   }
+  productsShowCtrl.$inject = ["$stateParams"];
+  function productsShowCtrl($stateParams){
+    var vm        = this;
+    vm.product    = $stateParams;
+  }
 })();
