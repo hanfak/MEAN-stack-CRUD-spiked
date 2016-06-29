@@ -22,13 +22,13 @@
       controller:   "productsIndexController",
       controllerAs: "pIndexVM"
     })
-    .state("productShow", {
+    .state("productsShow", {
       url:      "/products/:name",
       templateUrl:  "/html/products-show.html",
       controller:   "productsShowController",
       controllerAs: "pShowVM"
     })
-    .state("productNew", {
+    .state("productsNew", {
       url:      "/new",
       templateUrl:  "/html/products-new.html",
       controller:   "productsNewController",
@@ -39,7 +39,9 @@
 
   productFactory.$inject = ["$resource"];
   function productFactory($resource){
-    var Product = $resource("/api/products/:name");
+    var Product = $resource("/api/products/:name", {}, {
+      update: {method: "PATCH"}
+    });
     return Product;
   }
 
@@ -65,6 +67,11 @@
       Product.remove($stateParams, function(){
         $state.go("productsIndex");
       });
-    };
+    }
+    vm.update     = function(){
+      Product.update($stateParams, vm.product, function(response){
+        $state.go("productsShow", response);
+      });
+    }
   }
 })();
