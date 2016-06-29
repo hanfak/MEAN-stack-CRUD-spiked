@@ -57,9 +57,14 @@
     };
   }
 
-  productsShowCtrl.$inject = ["$stateParams", "Product"];
-  function productsShowCtrl($stateParams, Product){
+  productsShowCtrl.$inject = ["$stateParams", "Product", "$state"];
+  function productsShowCtrl($stateParams, Product, $state){
     var vm        = this;
     vm.product    = Product.get($stateParams);
+    vm.delete     = function(){
+      Product.remove($stateParams, function(){
+        $state.go("productsIndex");
+      });
+    };
   }
 })();
