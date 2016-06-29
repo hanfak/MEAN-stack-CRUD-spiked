@@ -6,7 +6,8 @@
     "ui.router"
   ])
   .config(Router)
-  .controller("productsIndexController", productsIndexCtrl);
+  .controller("productsIndexController", productsIndexCtrl)
+  .controller("productsShowController", productsShowCtrl);
 
   Router.$inject = ["$stateProvider", "$locationProvider", "$urlRouterProvider"];
   function Router($stateProvider, $locationProvider, $urlRouterProvider){
@@ -18,9 +19,11 @@
       controller:   "productsIndexController",
       controllerAs: "pIndexVM"
     })
-    .state("test", {
-      url:      "/test",
-      templateUrl: 'test.html'
+    .state("productShow", {
+      url:      "/products/:name",
+      templateUrl:  "/html/products-show.html",
+      controller:   "productsShowController",
+      controllerAs: "pShowVM"
     });
     $urlRouterProvider.otherwise("/");
   }
@@ -33,5 +36,12 @@
       {name: "Product3"},
       []
     ];
+   }
+
+  //  productsShowCtrl.$inject = ["$stateParams"];
+    function productsShowCtrl(){
+      var vm        = this;
+      vm.product    = "ball";
+      // vm.product    = $stateParams;
    }
 })();
